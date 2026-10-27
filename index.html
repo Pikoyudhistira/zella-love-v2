@@ -1,316 +1,619 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#070711">
-<meta name="description" content="Surat malam dari PIKO untuk seseorang yang istimewa.">
-<title>PIKO ♡ ZELLA — Good Night</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050509">
+  <meta name="description" content="A private love letter, made with love from PIKO for ZELLA.">
+  <title>ZELLA ♡ PIKO</title>
 
-<style>
-:root {
-  --pink: #ff4fd8;
-  --cyan: #00eaff;
-  --purple: #a66bff;
-  --bg: #070711;
-  --text: #eeeaff;
-  --muted: #aaa7c5;
-}
+  <style>
+    :root {
+      --bg: #050509;
+      --panel: rgba(14, 14, 27, .88);
+      --pink: #ff4fd8;
+      --cyan: #00d9ff;
+      --purple: #9d6bff;
+      --white: #f7f4ff;
+      --muted: #aaa8c1;
+    }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-body {
-  min-height: 100vh;
-  padding: 24px 15px 40px;
-  color: var(--text);
-  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-  background:
-    radial-gradient(ellipse at 10% 0%, #48134855, transparent 45%),
-    radial-gradient(ellipse at 100% 100%, #003b5555, transparent 45%),
-    var(--bg);
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: .13;
-  background-image:
-    linear-gradient(#00eaff22 1px, transparent 1px),
-    linear-gradient(90deg, #00eaff22 1px, transparent 1px);
-  background-size: 35px 35px;
-}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 15% 15%, #17102c 0, transparent 42%),
+        radial-gradient(ellipse at 90% 85%, #201027 0, transparent 38%),
+        var(--bg);
+      color: var(--white);
+      font-family: system-ui, -apple-system, sans-serif;
+      overflow-x: hidden;
+    }
 
-main {
-  position: relative;
-  width: min(680px, 100%);
-  margin: 0 auto;
-}
+    button {
+      font: inherit;
+    }
 
-.top {
-  text-align: center;
-  padding: 22px 10px 30px;
-}
+    button:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 5px;
+    }
 
-.brand {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 7px;
-  color: var(--pink);
-  text-shadow: 0 0 15px #ff4fd877;
-}
+    .intro {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 20% 30%, #00d9ff20, transparent 45%),
+        radial-gradient(ellipse at 80% 70%, #ff4fd825, transparent 45%),
+        #050509;
+      text-align: center;
+      transition: opacity 1s ease, visibility 1s ease;
+    }
 
-.line {
-  width: 65px;
-  height: 2px;
-  margin: 17px auto;
-  background: linear-gradient(90deg, var(--pink), var(--cyan));
-  box-shadow: 0 0 12px var(--cyan);
-}
+    .intro::before,
+    .intro::after {
+      content: "";
+      position: absolute;
+      width: 160vw;
+      height: 2px;
+      background: linear-gradient(
+        90deg, transparent, var(--cyan), var(--pink), transparent
+      );
+      filter: blur(3px);
+      opacity: .7;
+      transform: rotate(-25deg);
+      animation: lightMove 6s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
 
-.eyebrow {
-  color: var(--cyan);
-  font-size: 10px;
-  letter-spacing: 3px;
-}
+    .intro::after {
+      transform: rotate(25deg);
+      animation-delay: -3s;
+      opacity: .35;
+    }
 
-h1 {
-  margin-top: 18px;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(34px, 7vw, 49px);
-  font-weight: 400;
-  line-height: 1.25;
-  background: linear-gradient(100deg, var(--pink), #fff, var(--cyan));
-  color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
-}
+    .intro.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
 
-.intro {
-  margin-top: 13px;
-  color: var(--muted);
-  font-size: 13px;
-}
+    .intro-content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 520px;
+      animation: appear 1.8s ease both;
+    }
 
-.letter {
-  position: relative;
-  padding: clamp(23px, 6vw, 42px);
-  border: 1px solid #ff4fd844;
-  border-radius: 15px;
-  background: #0d0c1beF;
-  box-shadow: 0 0 40px #ff4fd80b, 0 0 70px #00eaff09;
-  animation: appear 1s ease both;
-}
+    .eyebrow {
+      color: var(--cyan);
+      font-size: 10px;
+      letter-spacing: .32em;
+      line-height: 2;
+    }
 
-.letter::before {
-  content: "";
-  position: absolute;
-  top: -1px;
-  left: 25%;
-  width: 50%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--cyan), var(--pink), transparent);
-}
+    .intro h1 {
+      margin: 12px 0;
+      color: white;
+      font-size: clamp(42px, 13vw, 76px);
+      letter-spacing: .15em;
+      text-indent: .15em;
+      text-shadow:
+        0 0 12px #00d9ffbb,
+        0 0 35px #ff4fd877;
+      animation: pulse 3s ease-in-out infinite;
+    }
 
-.sender {
-  text-align: center;
-  margin-bottom: 29px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid #ffffff12;
-}
+    .intro-copy {
+      margin: 18px auto 28px;
+      max-width: 340px;
+      color: #d4d0e5;
+      font-size: 13px;
+      line-height: 1.9;
+    }
 
-.sender-label {
-  color: var(--muted);
-  font-size: 10px;
-  letter-spacing: 3px;
-}
+    .primary-button {
+      min-height: 48px;
+      padding: 14px 23px;
+      border: 1px solid var(--cyan);
+      border-radius: 4px;
+      background: #050509bb;
+      color: white;
+      font-size: 11px;
+      font-weight: 750;
+      letter-spacing: .13em;
+      box-shadow: 0 0 22px #00d9ff20;
+      cursor: pointer;
+      transition: background .25s, box-shadow .25s;
+    }
 
-.sender-name {
-  margin-top: 10px;
-  color: var(--pink);
-  font-size: 25px;
-  font-weight: 600;
-  letter-spacing: 5px;
-  text-shadow: 0 0 18px #ff4fd855;
-}
+    .primary-button:hover {
+      background: #00d9ff18;
+      box-shadow: 0 0 25px #00d9ff45;
+    }
 
-.sender-note {
-  margin-top: 8px;
-  color: var(--cyan);
-  font-size: 11px;
-  letter-spacing: 1px;
-}
+    .intro-footer {
+      position: absolute;
+      bottom: 25px;
+      left: 12px;
+      right: 12px;
+      color: #85829e;
+      font-size: 10px;
+      letter-spacing: .2em;
+    }
 
-.message {
-  color: #deddf1;
-  font-size: 14px;
-  line-height: 2;
-  overflow-wrap: anywhere;
-}
+    .page {
+      width: 100%;
+      max-width: 760px;
+      margin: auto;
+      padding: 25px 18px 100px;
+    }
 
-.message p {
-  margin-bottom: 19px;
-}
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0 22px;
+      border-bottom: 1px solid #ffffff12;
+    }
 
-.message .greeting {
-  color: var(--pink);
-  font-size: 16px;
-}
+    .brand {
+      color: var(--pink);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-shadow: 0 0 12px #ff4fd844;
+    }
 
-.message p:last-child {
-  margin-bottom: 0;
-}
+    .status {
+      color: var(--cyan);
+      font-size: 10px;
+      letter-spacing: .1em;
+    }
 
-.signature {
-  margin-top: 32px;
-  text-align: center;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 26px;
-  line-height: 1.8;
-  color: var(--pink);
-}
+    .hero {
+      padding: 50px 0 32px;
+      text-align: center;
+    }
 
-.signature span {
-  color: var(--cyan);
-}
+    .hero-tag {
+      color: var(--pink);
+      font-size: 10px;
+      letter-spacing: .25em;
+    }
 
-.end-mark {
-  margin-top: 22px;
-  text-align: center;
-  color: var(--pink);
-  letter-spacing: 8px;
-  animation: glow 2s ease-in-out infinite alternate;
-}
+    .hero h2 {
+      margin: 15px 0 12px;
+      font-size: clamp(28px, 8vw, 45px);
+      line-height: 1.2;
+      letter-spacing: -.03em;
+    }
 
-footer {
-  padding-top: 27px;
-  text-align: center;
-  color: #77758f;
-  font-size: 10px;
-  line-height: 2.2;
-  letter-spacing: 2px;
-}
+    .gradient-text {
+      background: linear-gradient(90deg, var(--cyan), var(--pink));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-footer span {
-  color: var(--pink);
-}
+    .hero p {
+      max-width: 460px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.9;
+    }
 
-.heart {
-  position: fixed;
-  z-index: 5;
-  bottom: -25px;
-  pointer-events: none;
-  animation: float-up linear forwards;
-}
+    .letter {
+      position: relative;
+      margin: 12px auto 28px;
+      padding: 28px 22px;
+      border: 1px solid #ff4fd82c;
+      border-radius: 12px;
+      background:
+        linear-gradient(145deg, #ff4fd80a, transparent 40%),
+        var(--panel);
+      box-shadow:
+        0 0 35px #ff4fd80a,
+        inset 0 0 30px #00d9ff05;
+      overflow: hidden;
+    }
 
-@keyframes appear {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+    .letter::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 12%;
+      width: 76%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--pink), var(--cyan), transparent);
+    }
 
-@keyframes glow {
-  from { text-shadow: 0 0 4px #ff4fd833; }
-  to { text-shadow: 0 0 17px #ff4fd899; }
-}
+    .letter-label {
+      color: var(--cyan);
+      font-size: 10px;
+      letter-spacing: .23em;
+    }
 
-@keyframes float-up {
-  0% { transform: translateY(0) rotate(0); opacity: 0; }
-  15% { opacity: .7; }
-  100% { transform: translateY(-110vh) rotate(35deg); opacity: 0; }
-}
+    .letter h3 {
+      margin: 18px 0;
+      font-size: 24px;
+      line-height: 1.4;
+    }
 
-@media (max-width: 420px) {
-  body { padding: 12px 12px 28px; }
-  .top { padding-top: 22px; }
-  .message { font-size: 13px; line-height: 1.95; }
-  .letter { border-radius: 12px; }
-}
+    .letter p {
+      color: #d7d3e5;
+      font-size: 14px;
+      line-height: 2;
+      overflow-wrap: anywhere;
+    }
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-  }
-}
-</style>
+    .letter .dear {
+      color: var(--pink);
+      font-weight: 700;
+    }
+
+    .signature {
+      margin-top: 27px;
+      color: white;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .signature strong {
+      display: block;
+      color: var(--pink);
+      font-size: 20px;
+      letter-spacing: .08em;
+    }
+
+    .heart {
+      display: inline-block;
+      color: var(--pink);
+      animation: heartbeat 1.6s ease-in-out infinite;
+    }
+
+    .note {
+      padding: 23px 18px;
+      border: 1px solid #00d9ff25;
+      border-radius: 10px;
+      background: #00d9ff08;
+      text-align: center;
+    }
+
+    .note h3 {
+      margin: 0 0 10px;
+      color: var(--cyan);
+      font-size: 12px;
+      letter-spacing: .15em;
+    }
+
+    .note p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .footer {
+      padding-top: 35px;
+      color: #85829e;
+      font-size: 10px;
+      line-height: 2;
+      letter-spacing: .12em;
+      text-align: center;
+    }
+
+    .music-toggle {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 1001;
+      min-height: 44px;
+      padding: 12px 16px;
+      border: 1px solid var(--cyan);
+      border-radius: 6px;
+      background: #080811f2;
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      box-shadow: 0 0 18px #00d9ff20;
+      cursor: pointer;
+    }
+
+    .music-toggle.playing {
+      border-color: var(--pink);
+      box-shadow: 0 0 18px #ff4fd825;
+    }
+
+    .hidden-content {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .hidden-content.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.35); }
+    }
+
+    @keyframes lightMove {
+      from { translate: -8% -15%; }
+      to { translate: 8% 15%; }
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      15% { transform: scale(1.15); }
+      30% { transform: scale(1); }
+      45% { transform: scale(1.1); }
+    }
+
+    @media (min-width: 600px) {
+      .page { padding-left: 28px; padding-right: 28px; }
+      .letter { padding: 38px 42px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
-<main>
-  <header class="top">
-    <div class="brand">Z E L L A</div>
-    <div class="line"></div>
-    <div class="eyebrow">A LITTLE LETTER FROM PIKO</div>
-    <h1>Selamat Malam,<br>Sayangku ♡</h1>
-    <p class="intro">Untuk sayang, yang selalu istimewa di hatiku.</p>
-  </header>
-
-  <article class="letter">
-    <div class="sender">
-      <div class="sender-label">SURAT KECIL DARI PIKO UNTUK</div>
-      <div class="sender-name">♡ ZELLA ♡</div>
-      <div class="sender-note">Ditulis dengan sepenuh hati</div>
+  <!-- CINEMATIC INTRO -->
+  <section class="intro" id="zella-intro" aria-label="ZELLA welcome screen">
+    <div class="intro-content">
+      <div class="eyebrow">A PRIVATE MESSAGE FOR</div>
+      <h1>ZELLA</h1>
+      <p class="intro-copy">
+        Di antara miliaran manusia dan luasnya dunia digital,
+        ada satu pesan kecil yang ditulis khusus untukmu.
+      </p>
+      <button class="primary-button" id="open-letter" type="button">
+        OPEN MY LETTER&nbsp; ↗
+      </button>
     </div>
+    <div class="intro-footer">MADE WITH LOVE · FROM PIKO</div>
+  </section>
 
-    <div class="message">
-      <p class="greeting">Selamat malam, sayangku. ♡</p>
+  <!-- BACKGROUND MUSIC -->
+  <audio id="zella-music" loop preload="none">
+    <source src="./Hati%20yang%20Tenang.m4a" type="audio/mp4">
+    Browser kamu tidak mendukung pemutaran audio.
+  </audio>
 
-      <p>Sebelum sayang tidur, aku mau bilang terima kasih. Terima kasih sudah menjadi bagian paling indah dari hari-hariku. Terima kasih sudah hadir, sudah sabar, sudah tetap di sini.</p>
+  <button
+    class="music-toggle"
+    id="music-toggle"
+    type="button"
+    aria-label="Nyalakan atau matikan musik latar"
+    aria-pressed="false"
+  >♫ MUSIC OFF</button>
 
-      <p>Aku tau hari ini pasti melelahkan buat sayang, banyak pikiran, banyak hal yang harus sayang hadapi. Jadi malam ini, aku mohon, lepaskan semuanya dulu ya, jangan bawa lelah itu ke dalam mimpi sayang. Tidurlah yang nyenyak, istirahat yang cukup. Jangan begadang terlalu larut lagi ya, sayang.</p>
+  <!-- MAIN WEBSITE -->
+  <main class="page">
+    <header class="topbar">
+      <div class="brand">ZELLA LOVE V2 ♡</div>
+      <div class="status">● A LETTER FOR YOU</div>
+    </header>
 
-      <p>Aku ingin sayang selalu sehat, karena sehatnya sayang adalah tenangku juga.</p>
+    <section class="hero hidden-content" id="hero">
+      <div class="hero-tag">A LITTLE PIECE OF MY HEART</div>
+      <h2>Untuk <span class="gradient-text">ZELLA</span>,<br>yang istimewa.</h2>
+      <p>
+        Ada hal-hal yang mungkin sulit diucapkan secara langsung.
+        Jadi, biarkan halaman kecil ini menyampaikan apa yang ada di hati.
+      </p>
+    </section>
 
-      <p>Aku mungkin bukan orang yang paling pandai merangkai kata, tapi satu hal yang selalu aku syukuri, hal-hal sederhana dari sayang. Cara sayang ngobrol, cara sayang perhatian, bahkan diamnya sayang pun selalu berhasil membuat hariku jauh lebih baik.</p>
+    <article class="letter hidden-content" id="letter">
+      <div class="letter-label">✦ A LETTER FROM PIKO</div>
 
-      <p>Sayang, semoga kita bisa terus seperti ini ya. Saling menjaga, saling memahami, saling menguatkan. Seberat apa pun yang kita hadapi nanti, kita hadapi sama-sama. Aku di sini, akan selalu di sini buat sayang.</p>
+      <h3>
+        Untuk seseorang yang membuat dunia terasa lebih indah
+        <span class="heart">♡</span>
+      </h3>
 
-      <p>Selamat malam, sayangku. Tidur nyenyak, mimpi indah ya. Jangan lupa, di setiap hembusan nafasku, aku sangat mencintai sayang.</p>
-    </div>
+      <p class="dear">Hai, ZELLA.</p>
 
-    <div class="signature">
-      Selalu sayang,<br>
-      <span>hanya sayang.</span> ♡
-    </div>
+      <p>
+        Aku tidak tahu apakah kata-kata ini bisa menggambarkan semuanya
+        dengan sempurna. Tapi aku ingin kamu tahu bahwa kehadiranmu
+        punya cara tersendiri untuk membuat hal-hal sederhana terasa
+        lebih berarti.
+      </p>
 
-    <div class="end-mark">━━━━ ♡ ━━━━</div>
-  </article>
+      <p>
+        Di dunia yang terkadang begitu ramai, melelahkan, dan tidak selalu
+        berjalan sesuai harapan, aku berharap kamu selalu menemukan
+        alasan untuk tersenyum. Semoga ada ketenangan di setiap langkahmu,
+        kehangatan di hari-harimu, dan harapan yang tetap menyala bahkan
+        ketika malam terasa panjang.
+      </p>
 
-  <footer>
-    MADE WITH <span>♥</span> BY PIKO<br>
-    FOR SOMEONE SPECIAL IN THE ZELLA UNIVERSE
-  </footer>
-</main>
+      <p>
+        Kalau suatu hari kamu merasa lelah, ingatlah bahwa kamu tidak
+        harus selalu terlihat kuat. Tidak apa-apa untuk berhenti sejenak,
+        menarik napas, dan memberi dirimu sendiri waktu untuk pulih.
+        Kamu juga pantas menerima kelembutan yang selama ini mungkin
+        terlalu sering kamu berikan kepada dunia.
+      </p>
 
-<div id="hearts" aria-hidden="true"></div>
+      <p>
+        Aku tidak bisa menjanjikan bahwa setiap hari akan selalu indah.
+        Tetapi aku berharap kamu akan terus menemukan hal-hal kecil
+        yang membuat hidup layak disyukuri: langit senja, lagu favorit,
+        tawa yang datang tanpa direncanakan, dan seseorang yang
+        mengingatmu dengan tulus.
+      </p>
 
-<script>
-(() => {
-  const container = document.getElementById("hearts");
+      <p>
+        Jika kata-kata ini bisa menjadi satu hal kecil yang menemanimu
+        hari ini, aku sudah cukup bahagia. Sebab terkadang, perhatian
+        yang sederhana bisa menjadi cahaya kecil di tengah malam yang gelap.
+      </p>
 
-  function makeHeart() {
-    if (document.hidden) return;
+      <p>
+        Terima kasih sudah menjadi dirimu sendiri, ZELLA.
+        Jangan lupa bahwa kamu berharga, bahkan pada hari-hari ketika
+        kamu sendiri sulit mempercayainya.
+      </p>
 
-    const heart = document.createElement("span");
-    heart.className = "heart";
-    heart.textContent = Math.random() > 0.5 ? "♡" : "✧";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (12 + Math.random() * 10) + "px";
-    heart.style.color = Math.random() > 0.5 ? "#ff4fd8" : "#00eaff";
-    heart.style.animationDuration = (8 + Math.random() * 6) + "s";
+      <p>
+        Semoga hatimu selalu menemukan tempat untuk beristirahat,
+        semoga langkahmu dipertemukan dengan kebaikan, dan semoga
+        kebahagiaan datang kepadamu dalam bentuk-bentuk yang tidak
+        pernah kamu sangka.
+      </p>
 
-    container.appendChild(heart);
-    setTimeout(() => heart.remove(), 15000);
-  }
+      <p>
+        Di antara banyak hal yang berubah, semoga kamu tetap memiliki
+        alasan untuk percaya bahwa hal-hal baik masih menunggumu.
+      </p>
 
-  setInterval(makeHeart, 1200);
-})();
-</script>
+      <div class="signature">
+        Dengan tulus dan penuh kehangatan,
+        <strong>PIKO <span class="heart">♡</span></strong>
+        <span style="color:var(--muted);font-size:11px">
+          Sebuah pesan kecil, khusus untukmu.
+        </span>
+      </div>
+    </article>
+
+    <section class="note hidden-content" id="note">
+      <h3>ONE LAST LITTLE THING ✦</h3>
+      <p>
+        Jangan terlalu keras pada dirimu sendiri, ya.
+        Kamu sudah berjalan sejauh ini, dan itu juga sesuatu yang patut
+        kamu banggakan. Semoga hari ini memperlakukanmu dengan lembut.
+        <br><br>
+        <span class="gradient-text">Take care of your heart, ZELLA. ♡</span>
+      </p>
+    </section>
+
+    <footer class="footer">
+      <div>ENDLESS LITTLE THOUGHTS · NEON DREAMS</div>
+      <div>CRAFTED WITH ♡ BY PIKO</div>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      const intro = document.getElementById("zella-intro");
+      const openButton = document.getElementById("open-letter");
+      const music = document.getElementById("zella-music");
+      const musicButton = document.getElementById("music-toggle");
+
+      const revealItems = [
+        document.getElementById("hero"),
+        document.getElementById("letter"),
+        document.getElementById("note")
+      ];
+
+      let opened = false;
+
+      function updateMusicButton(isPlaying, message) {
+        musicButton.textContent = message ||
+          (isPlaying ? "♫ MUSIC ON" : "♫ MUSIC OFF");
+
+        musicButton.classList.toggle("playing", isPlaying);
+        musicButton.setAttribute("aria-pressed", String(isPlaying));
+      }
+
+      async function playMusic() {
+        try {
+          await music.play();
+          updateMusicButton(true);
+          return true;
+        } catch (error) {
+          updateMusicButton(false, "♫ TAP TO PLAY");
+          return false;
+        }
+      }
+
+      function pauseMusic() {
+        music.pause();
+        updateMusicButton(false);
+      }
+
+      async function openLetter() {
+        if (opened) return;
+        opened = true;
+
+        /* Start audio from the user's button tap. */
+        await playMusic();
+
+        /* Reveal the letter and fade away the intro. */
+        revealItems.forEach(function (item, index) {
+          window.setTimeout(function () {
+            item.classList.add("revealed");
+          }, index * 180);
+        });
+
+        intro.classList.add("hide");
+
+        window.setTimeout(function () {
+          intro.hidden = true;
+        }, 1100);
+      }
+
+      openButton.addEventListener("click", openLetter);
+
+      musicButton.addEventListener("click", async function () {
+        if (music.paused) {
+          await playMusic();
+        } else {
+          pauseMusic();
+        }
+      });
+
+      music.addEventListener("play", function () {
+        updateMusicButton(true);
+      });
+
+      music.addEventListener("pause", function () {
+        updateMusicButton(false);
+      });
+
+      music.addEventListener("error", function () {
+        updateMusicButton(false, "♫ AUDIO UNAVAILABLE");
+      });
+    })();
+  </script>
 </body>
 </html>
-```
