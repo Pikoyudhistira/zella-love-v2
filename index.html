@@ -2,618 +2,692 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#050509">
-  <meta name="description" content="A private love letter, made with love from PIKO for ZELLA.">
-  <title>ZELLA ♡ PIKO</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#050509">
+<meta name="description" content="A little love letter from PIKO to ZELLA">
+<title>ZELLA LOVE V2 — Neon Heart Edition</title>
 
-  <style>
-    :root {
-      --bg: #050509;
-      --panel: rgba(14, 14, 27, .88);
-      --pink: #ff4fd8;
-      --cyan: #00d9ff;
-      --purple: #9d6bff;
-      --white: #f7f4ff;
-      --muted: #aaa8c1;
-    }
+<style>
+:root {
+  --bg: #050509;
+  --pink: #ff4fd8;
+  --cyan: #00d9ff;
+  --purple: #a66bff;
+  --white: #f8f5ff;
+  --muted: #b6b1c9;
+}
 
-    * {
-      box-sizing: border-box;
-    }
+* { box-sizing: border-box; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+html { scroll-behavior: smooth; }
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background:
-        radial-gradient(ellipse at 15% 15%, #17102c 0, transparent 42%),
-        radial-gradient(ellipse at 90% 85%, #201027 0, transparent 38%),
-        var(--bg);
-      color: var(--white);
-      font-family: system-ui, -apple-system, sans-serif;
-      overflow-x: hidden;
-    }
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: var(--white);
+  background:
+    radial-gradient(ellipse at 15% 10%, #251039 0, transparent 42%),
+    radial-gradient(ellipse at 90% 90%, #19102e 0, transparent 42%),
+    var(--bg);
+  font-family: system-ui, -apple-system, sans-serif;
+}
 
-    button {
-      font: inherit;
-    }
+button { font: inherit; cursor: pointer; }
 
-    button:focus-visible {
-      outline: 2px solid var(--cyan);
-      outline-offset: 5px;
-    }
+button:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 4px;
+}
 
-    .intro {
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      overflow: hidden;
-      background:
-        radial-gradient(ellipse at 20% 30%, #00d9ff20, transparent 45%),
-        radial-gradient(ellipse at 80% 70%, #ff4fd825, transparent 45%),
-        #050509;
-      text-align: center;
-      transition: opacity 1s ease, visibility 1s ease;
-    }
+/* CINEMATIC INTRO */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 20% 30%, #00d9ff24, transparent 45%),
+    radial-gradient(ellipse at 80% 70%, #ff4fd825, transparent 45%),
+    #050509;
+  text-align: center;
+  transition: opacity 1s ease, visibility 1s ease;
+}
 
-    .intro::before,
-    .intro::after {
-      content: "";
-      position: absolute;
-      width: 160vw;
-      height: 2px;
-      background: linear-gradient(
-        90deg, transparent, var(--cyan), var(--pink), transparent
-      );
-      filter: blur(3px);
-      opacity: .7;
-      transform: rotate(-25deg);
-      animation: lightMove 6s ease-in-out infinite alternate;
-      pointer-events: none;
-    }
+.intro::before,
+.intro::after {
+  content: "";
+  position: absolute;
+  width: 160vw;
+  height: 2px;
+  background: linear-gradient(
+    90deg, transparent, var(--cyan), var(--pink), transparent
+  );
+  filter: blur(3px);
+  opacity: .65;
+  transform: rotate(-25deg);
+  animation: lightMove 6s ease-in-out infinite alternate;
+  pointer-events: none;
+}
 
-    .intro::after {
-      transform: rotate(25deg);
-      animation-delay: -3s;
-      opacity: .35;
-    }
+.intro::after {
+  transform: rotate(25deg);
+  animation-delay: -3s;
+  opacity: .35;
+}
 
-    .intro.hide {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
+.intro.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
 
-    .intro-content {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 520px;
-      animation: appear 1.8s ease both;
-    }
+.intro-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 520px;
+  animation: appear 1.5s ease both;
+}
 
-    .eyebrow {
-      color: var(--cyan);
-      font-size: 10px;
-      letter-spacing: .32em;
-      line-height: 2;
-    }
+.eyebrow {
+  color: var(--cyan);
+  font-size: 10px;
+  letter-spacing: .3em;
+  line-height: 2;
+}
 
-    .intro h1 {
-      margin: 12px 0;
-      color: white;
-      font-size: clamp(42px, 13vw, 76px);
-      letter-spacing: .15em;
-      text-indent: .15em;
-      text-shadow:
-        0 0 12px #00d9ffbb,
-        0 0 35px #ff4fd877;
-      animation: pulse 3s ease-in-out infinite;
-    }
+.intro h1 {
+  margin: 12px 0;
+  font-size: clamp(42px, 13vw, 76px);
+  letter-spacing: .15em;
+  text-indent: .15em;
+  text-shadow: 0 0 14px #00d9ff, 0 0 38px #ff4fd8aa;
+  animation: pulse 3s ease-in-out infinite;
+}
 
-    .intro-copy {
-      margin: 18px auto 28px;
-      max-width: 340px;
-      color: #d4d0e5;
-      font-size: 13px;
-      line-height: 1.9;
-    }
+.intro-copy {
+  max-width: 340px;
+  margin: 20px auto 28px;
+  color: #d5d1e5;
+  font-size: 13px;
+  line-height: 1.9;
+}
 
-    .primary-button {
-      min-height: 48px;
-      padding: 14px 23px;
-      border: 1px solid var(--cyan);
-      border-radius: 4px;
-      background: #050509bb;
-      color: white;
-      font-size: 11px;
-      font-weight: 750;
-      letter-spacing: .13em;
-      box-shadow: 0 0 22px #00d9ff20;
-      cursor: pointer;
-      transition: background .25s, box-shadow .25s;
-    }
+.primary {
+  min-height: 48px;
+  padding: 14px 22px;
+  border: 1px solid var(--cyan);
+  border-radius: 4px;
+  background: #050509dd;
+  color: white;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: .13em;
+  box-shadow: 0 0 22px #00d9ff22;
+}
 
-    .primary-button:hover {
-      background: #00d9ff18;
-      box-shadow: 0 0 25px #00d9ff45;
-    }
+.primary:active { background: #00d9ff24; }
 
-    .intro-footer {
-      position: absolute;
-      bottom: 25px;
-      left: 12px;
-      right: 12px;
-      color: #85829e;
-      font-size: 10px;
-      letter-spacing: .2em;
-    }
+.intro-footer {
+  position: absolute;
+  right: 12px;
+  bottom: 24px;
+  left: 12px;
+  color: #8e89a5;
+  font-size: 10px;
+  letter-spacing: .2em;
+}
 
-    .page {
-      width: 100%;
-      max-width: 760px;
-      margin: auto;
-      padding: 25px 18px 100px;
-    }
+/* FALLING NEON HEARTS */
+#heart-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
 
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 0 22px;
-      border-bottom: 1px solid #ffffff12;
-    }
+.falling-heart {
+  position: absolute;
+  top: -50px;
+  color: var(--pink);
+  opacity: 0;
+  font-size: 20px;
+  text-shadow:
+    0 0 6px currentColor,
+    0 0 16px currentColor;
+  animation: heartFall linear forwards;
+  will-change: transform, opacity;
+}
 
-    .brand {
-      color: var(--pink);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: .15em;
-      text-shadow: 0 0 12px #ff4fd844;
-    }
+.falling-heart.cyan { color: var(--cyan); }
+.falling-heart.purple { color: var(--purple); }
 
-    .status {
-      color: var(--cyan);
-      font-size: 10px;
-      letter-spacing: .1em;
-    }
+/* MAIN PAGE */
+.page {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 760px;
+  margin: auto;
+  padding: 24px 18px 100px;
+}
 
-    .hero {
-      padding: 50px 0 32px;
-      text-align: center;
-    }
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0 22px;
+  border-bottom: 1px solid #ffffff15;
+}
 
-    .hero-tag {
-      color: var(--pink);
-      font-size: 10px;
-      letter-spacing: .25em;
-    }
+.brand {
+  color: var(--pink);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .13em;
+  text-shadow: 0 0 12px #ff4fd844;
+}
 
-    .hero h2 {
-      margin: 15px 0 12px;
-      font-size: clamp(28px, 8vw, 45px);
-      line-height: 1.2;
-      letter-spacing: -.03em;
-    }
+.status {
+  color: var(--cyan);
+  font-size: 9px;
+  letter-spacing: .08em;
+}
 
-    .gradient-text {
-      background: linear-gradient(90deg, var(--cyan), var(--pink));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
+.hero {
+  padding: 50px 0 32px;
+  text-align: center;
+}
 
-    .hero p {
-      max-width: 460px;
-      margin: auto;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.9;
-    }
+.hero-tag {
+  color: var(--pink);
+  font-size: 10px;
+  letter-spacing: .22em;
+}
 
-    .letter {
-      position: relative;
-      margin: 12px auto 28px;
-      padding: 28px 22px;
-      border: 1px solid #ff4fd82c;
-      border-radius: 12px;
-      background:
-        linear-gradient(145deg, #ff4fd80a, transparent 40%),
-        var(--panel);
-      box-shadow:
-        0 0 35px #ff4fd80a,
-        inset 0 0 30px #00d9ff05;
-      overflow: hidden;
-    }
+.hero h2 {
+  margin: 16px 0 12px;
+  font-size: clamp(29px, 8vw, 46px);
+  line-height: 1.25;
+}
 
-    .letter::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 12%;
-      width: 76%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--pink), var(--cyan), transparent);
-    }
+.gradient {
+  color: var(--pink);
+  background: linear-gradient(90deg, var(--cyan), var(--pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-    .letter-label {
-      color: var(--cyan);
-      font-size: 10px;
-      letter-spacing: .23em;
-    }
+.hero p {
+  max-width: 460px;
+  margin: auto;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.9;
+}
 
-    .letter h3 {
-      margin: 18px 0;
-      font-size: 24px;
-      line-height: 1.4;
-    }
+/* LOVE LETTER */
+.letter {
+  position: relative;
+  margin: 12px auto 28px;
+  padding: 28px 22px;
+  overflow: hidden;
+  border: 1px solid #ff4fd833;
+  border-radius: 12px;
+  background:
+    linear-gradient(145deg, #ff4fd80a, transparent 45%),
+    #0e0d19eF;
+  box-shadow: 0 0 35px #ff4fd80b;
+}
 
-    .letter p {
-      color: #d7d3e5;
-      font-size: 14px;
-      line-height: 2;
-      overflow-wrap: anywhere;
-    }
+.letter::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10%;
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--pink), var(--cyan), transparent);
+}
 
-    .letter .dear {
-      color: var(--pink);
-      font-weight: 700;
-    }
+.letter-label {
+  color: var(--cyan);
+  font-size: 10px;
+  letter-spacing: .2em;
+}
 
-    .signature {
-      margin-top: 27px;
-      color: white;
-      font-size: 14px;
-      line-height: 1.9;
-    }
+.letter h3 {
+  margin: 20px 0;
+  font-size: 24px;
+  line-height: 1.5;
+}
 
-    .signature strong {
-      display: block;
-      color: var(--pink);
-      font-size: 20px;
-      letter-spacing: .08em;
-    }
+.letter p {
+  color: #d7d3e5;
+  font-size: 14px;
+  line-height: 2;
+  overflow-wrap: anywhere;
+}
 
-    .heart {
-      display: inline-block;
-      color: var(--pink);
-      animation: heartbeat 1.6s ease-in-out infinite;
-    }
+.dear { color: var(--pink) !important; font-weight: 700; }
 
-    .note {
-      padding: 23px 18px;
-      border: 1px solid #00d9ff25;
-      border-radius: 10px;
-      background: #00d9ff08;
-      text-align: center;
-    }
+.signature {
+  margin-top: 28px;
+  font-size: 13px;
+  line-height: 1.9;
+}
 
-    .note h3 {
-      margin: 0 0 10px;
-      color: var(--cyan);
-      font-size: 12px;
-      letter-spacing: .15em;
-    }
+.signature strong {
+  display: block;
+  color: var(--pink);
+  font-size: 22px;
+  letter-spacing: .1em;
+}
 
-    .note p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.9;
-    }
+.heart {
+  display: inline-block;
+  color: var(--pink);
+  text-shadow: 0 0 12px #ff4fd8;
+  animation: heartbeat 1.7s ease-in-out infinite;
+}
 
-    .footer {
-      padding-top: 35px;
-      color: #85829e;
-      font-size: 10px;
-      line-height: 2;
-      letter-spacing: .12em;
-      text-align: center;
-    }
+.note {
+  padding: 23px 18px;
+  border: 1px solid #00d9ff30;
+  border-radius: 10px;
+  background: #00d9ff08;
+  text-align: center;
+}
 
-    .music-toggle {
-      position: fixed;
-      right: 16px;
-      bottom: 16px;
-      z-index: 1001;
-      min-height: 44px;
-      padding: 12px 16px;
-      border: 1px solid var(--cyan);
-      border-radius: 6px;
-      background: #080811f2;
-      color: white;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .08em;
-      box-shadow: 0 0 18px #00d9ff20;
-      cursor: pointer;
-    }
+.note h3 {
+  color: var(--cyan);
+  font-size: 12px;
+  letter-spacing: .15em;
+}
 
-    .music-toggle.playing {
-      border-color: var(--pink);
-      box-shadow: 0 0 18px #ff4fd825;
-    }
+.note p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.9;
+}
 
-    .hidden-content {
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity .8s ease, transform .8s ease;
-    }
+.footer {
+  padding-top: 35px;
+  color: #85819e;
+  font-size: 10px;
+  line-height: 2;
+  letter-spacing: .12em;
+  text-align: center;
+}
 
-    .hidden-content.revealed {
-      opacity: 1;
-      transform: translateY(0);
-    }
+/* MUSIC CONTROL */
+.music-toggle {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 1001;
+  min-height: 44px;
+  padding: 12px 16px;
+  border: 1px solid var(--cyan);
+  border-radius: 6px;
+  background: #080811f5;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  box-shadow: 0 0 18px #00d9ff25;
+}
 
-    @keyframes appear {
-      from { opacity: 0; transform: translateY(18px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+.music-toggle.playing {
+  border-color: var(--pink);
+  box-shadow: 0 0 18px #ff4fd830;
+}
 
-    @keyframes pulse {
-      0%, 100% { filter: brightness(1); }
-      50% { filter: brightness(1.35); }
-    }
+/* REVEAL EFFECT */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .8s ease, transform .8s ease;
+}
 
-    @keyframes lightMove {
-      from { translate: -8% -15%; }
-      to { translate: 8% 15%; }
-    }
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-    @keyframes heartbeat {
-      0%, 100% { transform: scale(1); }
-      15% { transform: scale(1.15); }
-      30% { transform: scale(1); }
-      45% { transform: scale(1.1); }
-    }
+@keyframes appear {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-    @media (min-width: 600px) {
-      .page { padding-left: 28px; padding-right: 28px; }
-      .letter { padding: 38px 42px; }
-    }
+@keyframes pulse {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.35); }
+}
 
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-      }
-    }
-  </style>
+@keyframes lightMove {
+  from { translate: -8% -15%; }
+  to { translate: 8% 15%; }
+}
+
+@keyframes heartFall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -5vh, 0) rotate(0deg);
+  }
+  10% { opacity: .8; }
+  85% { opacity: .65; }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--drift), 110vh, 0) rotate(300deg);
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  20% { transform: scale(1.16); }
+  40% { transform: scale(1); }
+  60% { transform: scale(1.1); }
+}
+
+@media (min-width: 600px) {
+  .page { padding-right: 28px; padding-left: 28px; }
+  .letter { padding: 38px 42px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
 </head>
 
 <body>
-  <!-- CINEMATIC INTRO -->
-  <section class="intro" id="zella-intro" aria-label="ZELLA welcome screen">
-    <div class="intro-content">
-      <div class="eyebrow">A PRIVATE MESSAGE FOR</div>
-      <h1>ZELLA</h1>
-      <p class="intro-copy">
-        Di antara miliaran manusia dan luasnya dunia digital,
-        ada satu pesan kecil yang ditulis khusus untukmu.
-      </p>
-      <button class="primary-button" id="open-letter" type="button">
-        OPEN MY LETTER&nbsp; ↗
-      </button>
-    </div>
-    <div class="intro-footer">MADE WITH LOVE · FROM PIKO</div>
+<!-- CINEMATIC INTRO -->
+<section class="intro" id="intro" aria-label="Welcome to ZELLA LOVE">
+  <div class="intro-content">
+    <div class="eyebrow">A PRIVATE MESSAGE FOR</div>
+    <h1>ZELLA</h1>
+    <p class="intro-copy">
+      Di antara luasnya dunia digital, ada sebuah pesan kecil
+      yang ditulis dengan tulus, khusus untukmu.
+    </p>
+    <button class="primary" id="open-letter" type="button">
+      OPEN MY LETTER&nbsp; ↗
+    </button>
+  </div>
+  <div class="intro-footer">MADE WITH LOVE · FROM PIKO</div>
+</section>
+
+<!-- HEART ANIMATION LAYER -->
+<div id="heart-layer" aria-hidden="true"></div>
+
+<!-- MUSIC -->
+<audio id="zella-music" loop preload="none">
+  <source src="./Hati%20yang%20Tenang.m4a" type="audio/mp4">
+</audio>
+
+<button
+  class="music-toggle"
+  id="music-toggle"
+  type="button"
+  aria-label="Turn background music on or off"
+  aria-pressed="false"
+>♫ MUSIC OFF</button>
+
+<!-- WEBSITE CONTENT -->
+<main class="page">
+  <header class="topbar">
+    <div class="brand">ZELLA LOVE V2 ♡</div>
+    <div class="status">● A LETTER FOR YOU</div>
+  </header>
+
+  <section class="hero reveal" id="hero">
+    <div class="hero-tag">A LITTLE PIECE OF MY HEART</div>
+    <h2>Untuk <span class="gradient">ZELLA</span>,<br>yang istimewa.</h2>
+    <p>
+      Ada perasaan yang terkadang sulit dijelaskan.
+      Biarkan halaman kecil ini menyampaikan ketulusan
+      melalui kata-kata dan melodi.
+    </p>
   </section>
 
-  <!-- BACKGROUND MUSIC -->
-  <audio id="zella-music" loop preload="none">
-    <source src="./Hati%20yang%20Tenang.m4a" type="audio/mp4">
-    Browser kamu tidak mendukung pemutaran audio.
-  </audio>
+  <article class="letter reveal" id="letter">
+    <div class="letter-label">✦ A LETTER FROM PIKO</div>
 
-  <button
-    class="music-toggle"
-    id="music-toggle"
-    type="button"
-    aria-label="Nyalakan atau matikan musik latar"
-    aria-pressed="false"
-  >♫ MUSIC OFF</button>
+    <h3>
+      Untuk seseorang yang membuat dunia terasa lebih indah
+      <span class="heart">♡</span>
+    </h3>
 
-  <!-- MAIN WEBSITE -->
-  <main class="page">
-    <header class="topbar">
-      <div class="brand">ZELLA ♡ PIKO</div>
-      <div class="status">● A LETTER FOR YOU</div>
-    </header>
+    <p class="dear">Hai, ZELLA.</p>
 
-    <section class="hero hidden-content" id="hero">
-      <div class="hero-tag">A LITTLE PIECE OF MY HEART</div>
-      <h2>Untuk <span class="gradient-text">ZELLA</span>,<br>yang istimewa.</h2>
-      <p>
-        Ada hal-hal yang mungkin sulit diucapkan secara langsung.
-        Jadi, biarkan halaman kecil ini menyampaikan apa yang ada di hati.
-      </p>
-    </section>
+    <p>
+      Aku tidak tahu apakah kata-kata ini mampu menggambarkan
+      semuanya dengan sempurna. Namun, ada satu hal yang ingin
+      kusampaikan: kehadiran seseorang yang berarti dapat membuat
+      hari biasa terasa istimewa, bahkan tanpa melakukan sesuatu
+      yang luar biasa.
+    </p>
 
-    <article class="letter hidden-content" id="letter">
-      <div class="letter-label">✦ A LETTER FROM PIKO</div>
+    <p>
+      Di dunia yang terkadang begitu ramai dan melelahkan,
+      aku berharap kamu selalu punya ruang untuk bernapas,
+      tempat untuk beristirahat, dan alasan kecil untuk tersenyum.
+      Kamu tidak harus selalu kuat. Kamu juga berhak merasa lelah,
+      beristirahat, dan menerima kebaikan.
+    </p>
 
-      <h3>
-        Untuk seseorang yang membuat dunia terasa lebih indah
-        <span class="heart">♡</span>
-      </h3>
+    <p>
+      Jika suatu hari semuanya terasa berat, semoga kamu ingat
+      bahwa satu hari yang sulit tidak menentukan seluruh perjalananmu.
+      Pelan-pelan saja. Tidak apa-apa jika langkahmu hari ini
+      lebih kecil daripada kemarin. Yang penting, jangan lupa
+      memperlakukan dirimu sendiri dengan lembut.
+    </p>
 
-      <p class="dear">Hai, ZELLA.</p>
+    <p>
+      Aku berharap hidup mempertemukanmu dengan banyak hal baik:
+      langit senja yang indah, lagu yang menenangkan,
+      percakapan yang membuatmu tertawa, dan orang-orang
+      yang menghargai hatimu dengan tulus.
+    </p>
 
-      <p>
-        Aku tidak tahu apakah kata-kata ini bisa menggambarkan semuanya
-        dengan sempurna. Tapi aku ingin kamu tahu bahwa kehadiranmu
-        punya cara tersendiri untuk membuat hal-hal sederhana terasa
-        lebih berarti.
-      </p>
+    <p>
+      Aku tidak bisa menjanjikan bahwa setiap hari akan sempurna.
+      Tetapi aku berharap selalu ada cahaya kecil yang bisa kamu
+      temukan, bahkan ketika malam terasa panjang.
+      Terkadang, harapan hadir dalam bentuk sederhana:
+      sebuah pesan, sebuah kenangan, atau melodi yang menemanimu
+      tanpa meminta apa pun.
+    </p>
 
-      <p>
-        Di dunia yang terkadang begitu ramai, melelahkan, dan tidak selalu
-        berjalan sesuai harapan, aku berharap kamu selalu menemukan
-        alasan untuk tersenyum. Semoga ada ketenangan di setiap langkahmu,
-        kehangatan di hari-harimu, dan harapan yang tetap menyala bahkan
-        ketika malam terasa panjang.
-      </p>
+    <p>
+      Terima kasih sudah menjadi dirimu sendiri, ZELLA.
+      Semoga kamu tidak pernah lupa bahwa dirimu berharga,
+      bukan karena harus memenuhi harapan semua orang,
+      melainkan karena kamu layak mendapatkan kasih sayang
+      dan ketenangan seperti siapa pun.
+    </p>
 
-      <p>
-        Kalau suatu hari kamu merasa lelah, ingatlah bahwa kamu tidak
-        harus selalu terlihat kuat. Tidak apa-apa untuk berhenti sejenak,
-        menarik napas, dan memberi dirimu sendiri waktu untuk pulih.
-        Kamu juga pantas menerima kelembutan yang selama ini mungkin
-        terlalu sering kamu berikan kepada dunia.
-      </p>
+    <p>
+      Semoga langkahmu dipenuhi kebaikan, semoga hatimu
+      menemukan tempat untuk beristirahat, dan semoga hari-hari
+      mendatang memberimu alasan baru untuk tersenyum.
+    </p>
 
-      <p>
-        Aku tidak bisa menjanjikan bahwa setiap hari akan selalu indah.
-        Tetapi aku berharap kamu akan terus menemukan hal-hal kecil
-        yang membuat hidup layak disyukuri: langit senja, lagu favorit,
-        tawa yang datang tanpa direncanakan, dan seseorang yang
-        mengingatmu dengan tulus.
-      </p>
+    <p>
+      Jika halaman kecil ini berhasil membuatmu tersenyum,
+      walau hanya sebentar, maka pesan ini telah sampai
+      pada tujuannya.
+    </p>
 
-      <p>
-        Jika kata-kata ini bisa menjadi satu hal kecil yang menemanimu
-        hari ini, aku sudah cukup bahagia. Sebab terkadang, perhatian
-        yang sederhana bisa menjadi cahaya kecil di tengah malam yang gelap.
-      </p>
+    <div class="signature">
+      Dengan tulus dan penuh kehangatan,
+      <strong>PIKO <span class="heart">♡</span></strong>
+      <span style="color:var(--muted);font-size:11px">
+        Sebuah pesan kecil, khusus untukmu.
+      </span>
+    </div>
+  </article>
 
-      <p>
-        Terima kasih sudah menjadi dirimu sendiri, ZELLA.
-        Jangan lupa bahwa kamu berharga, bahkan pada hari-hari ketika
-        kamu sendiri sulit mempercayainya.
-      </p>
+  <section class="note reveal" id="note">
+    <h3>ONE LAST LITTLE THING ✦</h3>
+    <p>
+      Jangan terlalu keras pada dirimu sendiri, ya.
+      Kamu sudah berjalan sejauh ini, dan itu juga patut dibanggakan.
+      Semoga dunia memperlakukanmu dengan lembut hari ini.
+      <br><br>
+      <span class="gradient">Take care of your heart, ZELLA. ♡</span>
+    </p>
+  </section>
 
-      <p>
-        Semoga hatimu selalu menemukan tempat untuk beristirahat,
-        semoga langkahmu dipertemukan dengan kebaikan, dan semoga
-        kebahagiaan datang kepadamu dalam bentuk-bentuk yang tidak
-        pernah kamu sangka.
-      </p>
+  <footer class="footer">
+    <div>ENDLESS LITTLE THOUGHTS · NEON DREAMS</div>
+    <div>CRAFTED WITH ♡ BY PIKO</div>
+  </footer>
+</main>
 
-      <p>
-        Di antara banyak hal yang berubah, semoga kamu tetap memiliki
-        alasan untuk percaya bahwa hal-hal baik masih menunggumu.
-      </p>
+<script>
+(function () {
+  "use strict";
 
-      <div class="signature">
-        Dengan tulus dan penuh kehangatan,
-        <strong>PIKO <span class="heart">♡</span></strong>
-        <span style="color:var(--muted);font-size:11px">
-          Sebuah pesan kecil, khusus untukmu.
-        </span>
-      </div>
-    </article>
+  const intro = document.getElementById("intro");
+  const openButton = document.getElementById("open-letter");
+  const music = document.getElementById("zella-music");
+  const musicButton = document.getElementById("music-toggle");
+  const heartLayer = document.getElementById("heart-layer");
 
-    <section class="note hidden-content" id="note">
-      <h3>ONE LAST LITTLE THING ✦</h3>
-      <p>
-        Jangan terlalu keras pada dirimu sendiri, ya.
-        Kamu sudah berjalan sejauh ini, dan itu juga sesuatu yang patut
-        kamu banggakan. Semoga hari ini memperlakukanmu dengan lembut.
-        <br><br>
-        <span class="gradient-text">Take care of your heart, ZELLA. ♡</span>
-      </p>
-    </section>
+  let opened = false;
+  let heartTimer = null;
 
-    <footer class="footer">
-      <div>ENDLESS LITTLE THOUGHTS · NEON DREAMS</div>
-      <div>CRAFTED WITH ♡ BY PIKO</div>
-    </footer>
-  </main>
+  function updateMusicButton(playing, label) {
+    musicButton.textContent = label ||
+      (playing ? "♫ MUSIC ON" : "♫ MUSIC OFF");
 
-  <script>
-    (function () {
-      "use strict";
+    musicButton.classList.toggle("playing", playing);
+    musicButton.setAttribute("aria-pressed", String(playing));
+  }
 
-      const intro = document.getElementById("zella-intro");
-      const openButton = document.getElementById("open-letter");
-      const music = document.getElementById("zella-music");
-      const musicButton = document.getElementById("music-toggle");
+  async function playMusic() {
+    try {
+      await music.play();
+      updateMusicButton(true);
+      return true;
+    } catch (error) {
+      updateMusicButton(false, "♫ TAP TO PLAY");
+      return false;
+    }
+  }
 
-      const revealItems = [
-        document.getElementById("hero"),
-        document.getElementById("letter"),
-        document.getElementById("note")
-      ];
+  function pauseMusic() {
+    music.pause();
+    updateMusicButton(false);
+  }
 
-      let opened = false;
+  function createHeart() {
+    if (document.hidden || !heartLayer) return;
 
-      function updateMusicButton(isPlaying, message) {
-        musicButton.textContent = message ||
-          (isPlaying ? "♫ MUSIC ON" : "♫ MUSIC OFF");
+    const heart = document.createElement("span");
+    const colors = ["", "cyan", "purple"];
+    const color = colors[Math.floor(Math.random() * colors.length)];
 
-        musicButton.classList.toggle("playing", isPlaying);
-        musicButton.setAttribute("aria-pressed", String(isPlaying));
-      }
+    heart.className = "falling-heart" + (color ? " " + color : "");
+    heart.textContent = Math.random() > 0.35 ? "♥" : "♡";
 
-      async function playMusic() {
-        try {
-          await music.play();
-          updateMusicButton(true);
-          return true;
-        } catch (error) {
-          updateMusicButton(false, "♫ TAP TO PLAY");
-          return false;
-        }
-      }
+    const size = 10 + Math.random() * 17;
+    const duration = 7 + Math.random() * 7;
+    const drift = Math.round(Math.random() * 140 - 70);
 
-      function pauseMusic() {
-        music.pause();
-        updateMusicButton(false);
-      }
+    heart.style.left = Math.random() * 100 + "%";
+    heart.style.fontSize = size + "px";
+    heart.style.animationDuration = duration + "s";
+    heart.style.setProperty("--drift", drift + "px");
 
-      async function openLetter() {
-        if (opened) return;
-        opened = true;
+    heartLayer.appendChild(heart);
 
-        /* Start audio from the user's button tap. */
-        await playMusic();
+    window.setTimeout(function () {
+      heart.remove();
+    }, (duration + 1) * 1000);
+  }
 
-        /* Reveal the letter and fade away the intro. */
-        revealItems.forEach(function (item, index) {
-          window.setTimeout(function () {
-            item.classList.add("revealed");
-          }, index * 180);
-        });
+  function startHearts() {
+    if (heartTimer !== null) return;
 
-        intro.classList.add("hide");
+    /* A gentle effect, limited to avoid excessive phone workload. */
+    createHeart();
+    heartTimer = window.setInterval(createHeart, 650);
+  }
 
-        window.setTimeout(function () {
-          intro.hidden = true;
-        }, 1100);
-      }
+  function revealPage() {
+    ["hero", "letter", "note"].forEach(function (id, index) {
+      window.setTimeout(function () {
+        const element = document.getElementById(id);
+        if (element) element.classList.add("visible");
+      }, index * 180);
+    });
+  }
 
-      openButton.addEventListener("click", openLetter);
+  async function openLetter() {
+    if (opened) return;
+    opened = true;
 
-      musicButton.addEventListener("click", async function () {
-        if (music.paused) {
-          await playMusic();
-        } else {
-          pauseMusic();
-        }
-      });
+    /* Try to start audio directly from the user's tap. */
+    await playMusic();
 
-      music.addEventListener("play", function () {
-        updateMusicButton(true);
-      });
+    revealPage();
+    startHearts();
+    intro.classList.add("hide");
 
-      music.addEventListener("pause", function () {
-        updateMusicButton(false);
-      });
+    window.setTimeout(function () {
+      intro.hidden = true;
+    }, 1100);
+  }
 
-      music.addEventListener("error", function () {
-        updateMusicButton(false, "♫ AUDIO UNAVAILABLE");
-      });
-    })();
-  </script>
+  openButton.addEventListener("click", openLetter);
+
+  musicButton.addEventListener("click", async function () {
+    if (music.paused) {
+      await playMusic();
+    } else {
+      pauseMusic();
+    }
+  });
+
+  music.addEventListener("play", function () {
+    updateMusicButton(true);
+  });
+
+  music.addEventListener("pause", function () {
+    updateMusicButton(false);
+  });
+
+  music.addEventListener("error", function () {
+    updateMusicButton(false, "♫ AUDIO UNAVAILABLE");
+  });
+
+  /* Pause animation work when the browser tab is hidden. */
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden && heartTimer !== null) {
+      window.clearInterval(heartTimer);
+      heartTimer = null;
+    } else if (!document.hidden && opened) {
+      startHearts();
+    }
+  });
+})();
+</script>
 </body>
 </html>
